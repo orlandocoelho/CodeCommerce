@@ -15,7 +15,33 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('id' , [0-9]);
 
 Route::get('test', 'TestController@index');
-Route::get('admin/categories', 'AdminCategoriesController@index');
-Route::get('admin/products', 'AdminProductsController@index');
+
+Route::group(['prefix'=> 'admin' ], function(){
+
+    Route::group(['prefix' => 'categories'], function(){
+
+        Route::get('/', ['as' => 'categories', 'uses' => 'AdminCategoriesController@index']);
+        Route::get('/add', ['as' => 'add.form', 'uses' => 'AdminCategoriesController@form']);
+        Route::post('/add', ['as' => 'add.submit', 'uses' => 'AdminCategoriesController@create']);
+        Route::get('/edit/{id}', ['as' => 'edit.form', 'uses' => 'AdminCategoriesController@form']);
+        Route::post('/edit', ['as' => 'edit.submit', 'uses' => 'AdminCategoriesController@update']);
+        Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'AdminCategoriesController@update']);
+
+    });
+
+    Route::group(['prefix' => 'products'], function(){
+
+        Route::get('/', ['as' => 'products', 'uses' => 'AdminProductsController@index']);
+        Route::get('/add', ['as' => 'add.form', 'uses' => 'AdminProductsController@form']);
+        Route::post('/add', ['as' => 'add.submit', 'uses' => 'AdminProductsController@create']);
+        Route::get('/edit/{id}', ['as' => 'edit.form', 'uses' => 'AdminProductsController@form']);
+        Route::post('/edit', ['as' => 'edit.submit', 'uses' => 'AdminProductsController@update']);
+        Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'AdminProductsController@update']);
+
+    });
+
+});
+
