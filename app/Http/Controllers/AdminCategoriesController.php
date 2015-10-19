@@ -9,11 +9,11 @@ use CodeCommerce\Http\Controllers\Controller;
 
 class AdminCategoriesController extends Controller
 {
-    private $categories;
+    private $categoriesModel;
 
-    public function __construct(Category $category)
+    public function __construct(Category $categoryModel)
     {
-        $this->categories = $category;
+        $this->categoriesModel = $categoryModel;
     }
 
     /**
@@ -23,9 +23,9 @@ class AdminCategoriesController extends Controller
      */
     public function index()
     {
-        $categories = $this->categories->all();
+        $categories = $this->categoriesModel->all();
 
-        return view('admin.categories', compact('categories'));
+        return view('admin.categories.categories', compact('categories'));
 
     }
 
@@ -36,7 +36,8 @@ class AdminCategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
+
     }
 
     /**
@@ -45,9 +46,14 @@ class AdminCategoriesController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CategoryRequest $request)
     {
-        //
+        $input = $request->all();
+
+        $category = $this->categoriesModel->fill($input);
+        $category->save();
+
+        return redirect()->route('categories.list');
     }
 
     /**
@@ -69,7 +75,9 @@ class AdminCategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = $this->categoriesModel->find($id);
+
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -79,9 +87,10 @@ class AdminCategoriesController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CategoryRequest $request, $id)
     {
-        //
+        $this->categoriesModel->find($id)->update($request->all());
+        return redirect()->route('categories.list');
     }
 
     /**
@@ -92,6 +101,8 @@ class AdminCategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->categoriesModel->find($id)->delete();
+
+        return redirect()->route('categories.list');
     }
 }
