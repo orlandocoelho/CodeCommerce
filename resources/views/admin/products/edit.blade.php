@@ -28,11 +28,11 @@
             </div>
             <div class="form-group">
                 {!! Form::label('featured', 'Featured:') !!}
-                {!! Form::select('featured', ['false' => 'False', 'true' => 'True'], $product->featured, ['class' => 'form-control']) !!}
+                {!! Form::select('featured', ['0' => 'No', '1' => 'Yes'], $product->featured, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('recommend', 'Recommend:') !!}
-                {!! Form::select('recommend', ['false' => 'False', 'true' => 'True'], $product->recommend, ['class' => 'form-control']) !!}
+                {!! Form::select('recommend', ['0' => 'No', '1' => 'Yes'], $product->recommend, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::submit('Save Product', ['class'=>'btn btn-primary form-control']) !!}
