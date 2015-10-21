@@ -23,7 +23,7 @@ class AdminCategoriesController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoriesModel->all();
+        $categories = $this->categoriesModel->orderBy('id', 'desc')->paginate('10');
 
         return view('admin.categories.categories', compact('categories'));
 
