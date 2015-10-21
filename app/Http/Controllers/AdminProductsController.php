@@ -25,7 +25,7 @@ class AdminProductsController extends Controller
      */
     public function index()
     {
-        $products = $this->productsModel->orderBy('id', 'desc')->paginate('10');
+        $products = $this->productsModel->orderBy('id', 'asc')->paginate('10');
         return view('admin.products.products', compact('products', 'id'));
     }
 
