@@ -39,6 +39,12 @@ Route::group(['prefix'=> 'admin' ], function(){
         Route::put('/update/{id}', ['as' => 'products.update', 'uses' => 'AdminProductsController@update']);
         Route::get('/delete/{id}', ['as' => 'products.delete', 'uses' => 'AdminProductsController@destroy']);
 
+        Route::group(['prefix' => 'images'], function(){
+
+            Route::get('/', ['as' => 'products.list', 'uses' => 'AdminProductsController@storeImage']);
+
+        });
+
     });
 
 });

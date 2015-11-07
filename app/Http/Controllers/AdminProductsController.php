@@ -106,4 +106,7 @@ class AdminProductsController extends Controller
         $this->productsModel->find($id)->delete();
         return redirect()->route('products.list');
     }
+
+    
+
 }
