@@ -2,8 +2,11 @@
 
 namespace CodeCommerce\Providers;
 
+use CodeCommerce\Product;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Storage;
+
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -28,6 +31,11 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        //
+        Product::deleted(function ($product) {
+            foreach ($product->images as $image) {
+                Storage::disk('local_public')->delete($image->id.'.'.$image->extension);
+            }
+        });
+
     }
 }
