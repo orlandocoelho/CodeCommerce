@@ -27,6 +27,11 @@
                 {!! Form::textarea('description', $product->description, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
+                {!! Form::label('tags', 'Tags:') !!}
+                {!! Form::textarea('tags', $product->tagList, ['class'=>'form-control', 'rows'=>'2']) !!}
+                <p>Separar por virgula! Ex.: Camisa, Calsa, Shorts</p>
+            </div>
+            <div class="form-group">
                 {!! Form::label('price', 'Price:') !!}
                 {!! Form::text('price', $product->price, ['class'=>'form-control']) !!}
             </div>

@@ -27,6 +27,11 @@
                 {!! Form::textarea('description', null, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
+                {!! Form::label('tags', 'Tags:') !!}
+                {!! Form::textarea('tags', null, ['class'=>'form-control', 'rows'=>'2']) !!}
+                <p>Separar por virgula! Ex.: Blusa, Calsa, Camisa</p>
+            </div>
+            <div class="form-group">
                 {!! Form::label('price', 'Price:') !!}
                 {!! Form::text('price', null, ['class'=>'form-control']) !!}
             </div>
