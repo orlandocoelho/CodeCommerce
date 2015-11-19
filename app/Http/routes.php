@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('id' , [0-9]);
 
 Route::group(['prefix'=> 'admin' ], function(){
@@ -52,3 +48,5 @@ Route::group(['prefix'=> 'admin' ], function(){
 
 });
 
+Route::get('', 'StoreController@index');
+Route::get('category/{id}', ['as' => 'category.store', 'uses' => 'StoreController@categories']);

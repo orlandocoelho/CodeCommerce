@@ -26,9 +26,7 @@ class ProductsRequest extends Request
         return [
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required|numeric',
-            'featured' => 'required',
-            'recommend' => 'required',
+            'price' => 'required|numeric'
         ];
     }
 }
