@@ -18,10 +18,10 @@ class StoreController extends Controller
         return view('store.index', compact('pFeatured', 'pRecommend'));
     }
 
-    public function categories($id)
+    public function category($id)
     {
         $category = Category::find($id);
-        return view('store.categories', compact('category'));
+        return view('store.category', compact('category'));
     }
 
 }
