@@ -13,6 +13,8 @@ class ProductTableSeeder extends Seeder
     {
         DB::table('products')->truncate();
 
-        factory('CodeCommerce\Product', 40)->create();
+        factory('CodeCommerce\Product', 40)->create()->each(function ($u){
+            $u->tags()->sync([rand(0, 10)]);
+        });
     }
 }
