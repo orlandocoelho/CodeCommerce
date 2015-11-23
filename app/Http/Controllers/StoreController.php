@@ -2,11 +2,11 @@
 
 namespace CodeCommerce\Http\Controllers;
 
+use CodeCommerce\Tag;
 use CodeCommerce\Category;
 use CodeCommerce\Product;
 use Illuminate\Http\Request;
 use CodeCommerce\Http\Requests;
-use CodeCommerce\Http\Controllers\Controller;
 
 class StoreController extends Controller
 {
@@ -22,6 +22,18 @@ class StoreController extends Controller
     {
         $category = Category::find($id);
         return view('store.category', compact('category'));
+    }
+
+    public function product($id)
+    {
+        $product = Product::find($id);
+        return view('store.product', compact('product'));
+    }
+
+    public function tag($id)
+    {
+        $tag = Tag::find($id);
+        return view('store.tag', compact('tag'));
     }
 
 }
