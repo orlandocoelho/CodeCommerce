@@ -12,8 +12,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->truncate();
-
-        factory('CodeCommerce\User')->create(['name' => 'Orlando', 'email' => 'email@orlandocoelho.com', 'password' => '123']);
+        factory('CodeCommerce\User')->create(['name' => 'Orlando', 'email' => 'email@orlandocoelho.com', 'password' => bcrypt('123456'), 'is_admin' => true]);
         factory('CodeCommerce\User', 5)->create();
     }
 }
