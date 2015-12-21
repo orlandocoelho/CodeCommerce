@@ -2,6 +2,7 @@
 
 namespace CodeCommerce\Http\Controllers;
 
+use CodeCommerce\Events\CheckoutEvent;
 use CodeCommerce\Order;
 use CodeCommerce\OrderItem;
 use Illuminate\Http\Request;
@@ -27,8 +28,10 @@ class CheckoutController extends Controller
                 $order->items()->create(['product_id' => $k, 'price' => $item['price'], 'qtd' => $item['qtd']]);
             }
 
+            $cart->clear();
+            event(new CheckoutEvent(Auth::User(), $order));
+            return view('store.checkout', compact('order'));
 
-            dd($order);
         }
 
         return redirect()->route('cart');

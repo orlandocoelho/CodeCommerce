@@ -17,8 +17,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'CodeCommerce\Events\SomeEvent' => [
-            'CodeCommerce\Listeners\EventListener',
+        'CodeCommerce\Events\CheckoutEvent' => [
+            'CodeCommerce\Listeners\SendMailListeners',
         ],
     ];
 

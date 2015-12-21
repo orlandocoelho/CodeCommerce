@@ -20,4 +20,9 @@ class OrderItem extends Model
         return $this->belongsTo('CodeCommerce\Order');
     }
 
+    public function product()
+    {
+        return $this->belongsTo('CodeCommerce\Product');
+    }
+
 }

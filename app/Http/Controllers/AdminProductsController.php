@@ -105,7 +105,6 @@ class AdminProductsController extends Controller
      */
     public function update(Requests\ProductsRequest $request, $id, Tag $tagModel)
     {
-        $this->productsModel->find($id)->update($request->all());
 
         $product = $this->productsModel->find($id);
         $product->update($request->all());

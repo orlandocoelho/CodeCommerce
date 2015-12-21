@@ -19,7 +19,7 @@ elixir(function(mix) {
         'prettyPhoto.css',
         'animate.css',
         'main.css',
-        'responsive.css',
+        'responsive.css'
     ], 'public/css/all.css');
 
     mix.styles([
@@ -32,7 +32,7 @@ elixir(function(mix) {
         'jquery.scrollUp.min.js',
         'price-range.js',
         'jquery.prettyPhoto.js',
-        'main.js',
+        'main.js'
     ], 'public/js/all.js');
 
     mix.version(['css/all.css', 'css/app.css', 'js/all.js']);

@@ -46,6 +46,10 @@ Route::group(['prefix'=> 'admin', 'middleware' => ['auth', 'admin.client'], 'whe
 
     });
 
+    Route::group(['prefix' => 'orders'], function(){
+        Route::get('list', ['as' => 'orders.list', 'uses' => 'AdminOrdersController@index']);
+        Route::put('update/{id}', ['as' => 'orders.update', 'uses' => 'AdminOrdersController@update']);
+    });
 });
 
 Route::get('', 'StoreController@index');
@@ -62,7 +66,14 @@ Route::group(['prefix' => 'cart'], function(){
     Route::get('destroy/{id}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
 });
 
-Route::get('checkout', ['middleware' => 'auth', 'as' => 'checkout', 'uses' => 'CheckoutController@place']);
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('checkout', ['as' => 'checkout', 'uses' => 'CheckoutController@place']);
+
+    Route::group(['prefix' => 'account'], function(){
+       Route::get('profile', ['as' => 'account.profile', 'uses' => 'AccountController@index']);
+       Route::get('orders', ['as' => 'account.orders', 'uses' => 'AccountController@orders']);
+    });
+});
 
 Route::Controllers([
     'auth' => 'Auth\AuthController',
