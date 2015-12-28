@@ -15,6 +15,8 @@ Route::get('id' , [0-9]);
 
 Route::group(['prefix'=> 'admin', 'middleware' => ['auth', 'admin.client'], 'where' => ['id' => '[0-9]+']], function(){
 
+    Route::get('', ['as' => 'admin.index', 'uses' => 'AdminCategoriesController@index']);
+
     Route::group(['prefix' => 'categories'], function(){
 
         Route::get('', ['as' => 'categories.list', 'uses' => 'AdminCategoriesController@index']);

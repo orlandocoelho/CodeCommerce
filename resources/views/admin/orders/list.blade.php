@@ -10,6 +10,7 @@
                 <th>Itens</th>
                 <th>Valor</th>
                 <th>Status</th>
+                <th>Edit Status</th>
             </tr>
 
             @forelse($orders as $order)
@@ -24,6 +25,7 @@
                         </ul>
                     </td>
                     <td>{{ $order->total }}</td>
+                    <td>{{ $order->status }}</td>
                     <td>
 
 
