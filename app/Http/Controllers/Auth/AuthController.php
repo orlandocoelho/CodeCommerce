@@ -3,6 +3,7 @@
 namespace CodeCommerce\Http\Controllers\Auth;
 
 use CodeCommerce\User;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use CodeCommerce\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -62,4 +63,13 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function redirectPath()
+    {
+        if(Auth::user()->is_admin){
+            return '/admin';
+        }
+
+    }
+
 }

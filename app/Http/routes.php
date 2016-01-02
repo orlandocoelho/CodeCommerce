@@ -82,4 +82,4 @@ Route::Controllers([
     'password' => 'Auth\PasswordController'
 ]);
 
-Route::get('test', 'Test@index');
+Route::get('test', 'CheckoutController@test');

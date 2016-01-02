@@ -27,8 +27,6 @@
                     <td>{{ $order->total }}</td>
                     <td>{{ $order->status }}</td>
                     <td>
-
-
                         {!! Form::open(['route'=>['orders.update', $order->id], 'method'=>'put']) !!}
                         <div class="form-inline">
                             <div class="form-group">
@@ -41,7 +39,6 @@
                             </div>
                             {!! Form::submit('Edit Status', ['class'=>'btn btn-default']) !!}
                         </div>
-
                         {!! Form::close() !!}
                     </td>
                 </tr>

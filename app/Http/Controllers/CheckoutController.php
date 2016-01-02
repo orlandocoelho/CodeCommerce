@@ -5,11 +5,12 @@ namespace CodeCommerce\Http\Controllers;
 use CodeCommerce\Events\CheckoutEvent;
 use CodeCommerce\Order;
 use CodeCommerce\OrderItem;
-use Illuminate\Http\Request;
 use CodeCommerce\Http\Requests;
-use CodeCommerce\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use PHPSC\PagSeguro\Items\Item;
+use PHPSC\PagSeguro\Requests\Checkout\CheckoutService;
+
 
 class CheckoutController extends Controller
 {
@@ -37,4 +38,18 @@ class CheckoutController extends Controller
         return redirect()->route('cart');
 
     }
+
+    public function test(CheckoutService $checkoutService)
+    {
+        $checkout = $checkoutService->createCheckoutBuilder()
+            ->addItem(new Item(1, 'Televisão LED 500', 8999.99))
+            ->addItem(new Item(2, 'Video-game mega ultra blaster', 799.99))
+            ->getCheckout();
+
+        $response = $checkoutService->checkout($checkout);
+
+        return redirect($response->getRedirectionUrl());
+
+    }
+
 }
