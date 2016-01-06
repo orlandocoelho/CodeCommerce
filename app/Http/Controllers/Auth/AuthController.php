@@ -70,6 +70,8 @@ class AuthController extends Controller
             return '/admin';
         }
 
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+
     }
 
 }
